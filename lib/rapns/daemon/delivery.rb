@@ -19,6 +19,8 @@ module Rapns
 
       def mark_failed(code, description)
         @batch.mark_failed(@notification, code, description)
+        @notification.error_code ||= code
+        @notification.error_description ||= description
         reflect(:notification_failed, @notification)
       end
     end
